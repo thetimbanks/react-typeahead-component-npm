@@ -37,7 +37,7 @@ module.exports = React.createClass({
         var _this = this;
 
         return (
-            React.createElement("input", React.__spread({}, 
+            React.createElement("input", Object.assign({}, 
                 _this.props, 
                 {onChange: _this.handleChange})
             )

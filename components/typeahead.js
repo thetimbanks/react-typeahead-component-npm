@@ -89,8 +89,8 @@ module.exports = React.createClass({
         var _this = this,
             uniqueId = this.constructor.getInstanceCount();
 
-        _this.userInputValue = null;
-        _this.previousInputValue = null;
+        _this.userInputValue = undefined;
+        _this.previousInputValue = undefined;
         _this.activeDescendantId = 'react-typeahead-activedescendant-' + uniqueId;
         _this.optionsId = 'react-typeahead-options-' + uniqueId;
     },
@@ -171,7 +171,7 @@ module.exports = React.createClass({
                         WebkitTextFillColor: 'silver',
                         position: 'absolute'
                     },
-                    value: state.isHintVisible ? props.handleHint(inputValue, props.options) : null}
+                    value: state.isHintVisible ? props.handleHint(inputValue, props.options) : undefined}
                 ),
                 React.createElement(Input, {
                     ref: "input",
@@ -346,7 +346,7 @@ module.exports = React.createClass({
     },
 
     focus: function() {
-        this.refs.input.getDOMNode().focus();
+        ReactDOM.findDOMNode(this.refs.input).focus();
     },
 
     handleFocus: function(event) {
@@ -441,7 +441,7 @@ module.exports = React.createClass({
                         if (selectedIndex >= 0) {
                             // Save the current `input` value,
                             // as we might arrow back to it later.
-                            if (previousInputValue === null) {
+                            if (previousInputValue === undefined) {
                                 _this.previousInputValue = props.inputValue;
                             }
 
@@ -503,7 +503,7 @@ module.exports = React.createClass({
         var _this = this,
             target = event.target;
 
-        if (target !== window && !this.getDOMNode().contains(target)) {
+        if (target !== window && !ReactDOM.findDOMNode(this).contains(target)) {
             _this.hideHint();
             _this.hideDropdown();
         }
