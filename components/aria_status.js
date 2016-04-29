@@ -42,6 +42,6 @@ module.exports = React.createClass({
     // which confuses screen readers and doesn't cause them to read changes.
     setTextContent: function(textContent) {
         // We could set `innerHTML`, but it's better to avoid it.
-        ReactDOM.findDOMNode().textContent = textContent || '';
+        ReactDOM.findDOMNode(this).textContent = textContent || '';
     }
 });
